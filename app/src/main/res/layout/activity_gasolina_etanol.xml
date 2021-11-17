@@ -4,32 +4,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:stretchColumns="1"
     tools:context=".GasolinaEtanol">
 
     <TableRow
         android:id="@+id/tableRow0"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/gasolina"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/gasolina" />
+            android:gravity="right"
+            android:text="@string/gasolina"
+            android:textAlignment="gravity"
+            android:textColor="#780F0F"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/txgasolina"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            tools:ignore="SpeakableTextPresentCheck" />
+
     </TableRow>
 
     <TableRow
         android:id="@+id/tableRow1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="@string/txtEtanol"
+            android:textAlignment="gravity"
+            android:textColor="#780F0F"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/txetanol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal" />
+    </TableRow>
 
     <TableRow
         android:id="@+id/tableRow2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
+
+        <Button
+            android:id="@+id/calculaButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_span="2"
+            android:text="@string/calcula" />
+    </TableRow>
 
     <TableRow
         android:id="@+id/tableRow3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
+
+        <EditText
+            android:id="@+id/resultado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:textAlignment="gravity"
+            android:textColor="#780F0F"
+            android:textSize="18sp" />
+    </TableRow>
 </TableLayout>

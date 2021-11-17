@@ -1,48 +1,61 @@
 package com.eliasneri.aulapraticaandroid;
 
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import com.eliasneri.aulapraticaandroid.databinding.ActivityGasolinaEtanalBinding;
 
 public class GasolinaEtanol extends AppCompatActivity {
 
-    private AppBarConfiguration appBarConfiguration;
-    private ActivityGasolinaEtanalBinding binding;
+    // Atributos para dados persistente do aplicativo
+    private static String GASOLINA = "GASOLINA";
+    private static String ETANOL = "ETANOL";
+    private double gasolina;
+    private double etanol;
+
+    // Atributos com referências as vies da activity
+    private EditText txgasolina;
+    private EditText txetanol;
+    private Button calculaButton;
+    private TextView resultado;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_gasolina_etanol);
 
-        binding = ActivityGasolinaEtanalBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+    txgasolina = (EditText) findViewById(R.id.txgasolina);
+    txetanol = (EditText)findViewById(R.id.txetanol);
+    calculaButton = (Button)  findViewById(R.id.calculaButton);
+    resultado = (TextView) findViewById(R.id.resultado);
+    calculaButton.setOnClickListener(ouvinteCalculaButton);
 
-        setSupportActionBar(binding.toolbar);
-
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_gasolina_etanal);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+    if (savedInstanceState != null){
+        gasolina = savedInstanceState.getDouble(GASOLINA);
+        etanol = savedInstanceState.getDouble(ETANOL);
+        txgasolina.setText(String.format("% .f1", gasolina);
+        txetanol.setText(String.format("% .f1", gasolina);
+        calcula();
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_gasolina_etanal);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
+    private void calcula() {
+        gasolina = Double.parseDouble(txgasolina.getText().toString());
+        etanol = Double.parseDouble(txetanol.getText().toString());
+        resultado.setText(Calculadora.calcula(gasolina, etanol));
+     }
+
+    private View.OnClickListener ouvinteCalculaButton = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            calcula();
+        }
+    };
+
     }
+
+
 }
