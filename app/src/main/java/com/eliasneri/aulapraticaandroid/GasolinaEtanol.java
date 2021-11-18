@@ -55,7 +55,18 @@ public class GasolinaEtanol extends AppCompatActivity {
         }
     };
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
+    outState.putDouble(GASOLINA, gasolina);
+    outState.putDouble(ETANOL, etanol);
+        }
+
+
+
     }
+
+
 
 
 }
